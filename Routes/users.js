@@ -52,7 +52,7 @@ router.put('/:email', async (req, res) => {
     User.findOne({ email: email }, (err, data) => {
         if (data) {
             const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN)
-            res.send({ message: "Data Alrady Available", token })
+            res.status(200).send({ message: "Data Alrady Available", token })
         }
         else {
             newUser.save((err) => {

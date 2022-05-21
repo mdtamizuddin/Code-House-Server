@@ -22,6 +22,10 @@ app.use('/users' , require('./Routes/users'))
 app.use('/feedback' , require('./Routes/feedbackRoute'))
 app.use('/reactComponent' , require('./Routes/reactComponent'))
 
+app.get('/' , (req , res) =>{
+    res.send({message : "Server Is Running"})
+})
+
 app.listen(PORT, () => {
     console.log('Example app listening')
 }) 
