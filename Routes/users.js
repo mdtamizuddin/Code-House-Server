@@ -7,7 +7,7 @@ const verifyJWT = require('../verifyJWt')
 const jwt = require('jsonwebtoken')
 const User = new mongoose.model('User', userSchema)
 
-router.get('/', (req, res) => {
+router.get('/',verifyJWT, (req, res) => {
     User.find({}, (err, data) => {
         if (err) {
             res.status(500).json({ error: "Server Side Error" })

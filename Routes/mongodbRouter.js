@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
+const verifyJWT = require('../verifyJWt')
 const mongodbSchema = mongoose.Schema({
     title: {
         type: String,
@@ -39,7 +40,7 @@ router.get('/:id', (req, res) => {
         }
     })
 })
-router.post('/', (req, res) => {
+router.post('/',verifyJWT, (req, res) => {
     const newData = Mongodb(req.body)
     newData.save((err , data)=>{
         if (err) {
