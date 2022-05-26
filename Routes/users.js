@@ -7,7 +7,7 @@ const verifyJWT = require('../verifyJWt')
 const jwt = require('jsonwebtoken')
 const User = new mongoose.model('User', userSchema)
 
-router.get('/' , verifyJWT ,async (req, res) => {
+router.get('/', (req, res) => {
     User.find({}, (err, data) => {
         if (err) {
             res.status(500).json({ error: "Server Side Error" })
@@ -18,9 +18,9 @@ router.get('/' , verifyJWT ,async (req, res) => {
     })
 })
 
-router.get('/:email',verifyJWT, async (req, res) => {
+router.get('/:email', async (req, res) => {
     const email = req.params.email
-    User.find({ email: email }, (err, data) => {
+    User.findOne({ email: email }, (err, data) => {
         if (err) {
             res.status(500).json({ error: "Server Side Error" })
         }
@@ -30,7 +30,7 @@ router.get('/:email',verifyJWT, async (req, res) => {
     })
 })
 
-router.put('/admin/:email',verifyJWT, async (req, res) => {
+router.put('/admin/:email', verifyJWT, async (req, res) => {
     const email = req.params.email
     console.log(newUser)
     User.updateOne({ email: email }, {
@@ -67,7 +67,7 @@ router.put('/:email', async (req, res) => {
         }
     })
 })
-router.post('/',verifyJWT, async (req, res) => {
+router.post('/', verifyJWT, async (req, res) => {
     const newUser = new User(req.body)
     newUser.save((err, data) => {
         if (err) {
@@ -78,7 +78,7 @@ router.post('/',verifyJWT, async (req, res) => {
         }
     })
 })
-router.delete('/:email',verifyJWT, async (req, res) => {
+router.delete('/:email', verifyJWT, async (req, res) => {
     const email = req.params.email
     User.deleteOne({ email: email }, (err) => {
         if (err) {

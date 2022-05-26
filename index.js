@@ -21,7 +21,9 @@ mongoose.connect(uri , {
 app.use('/users' , require('./Routes/users'))
 app.use('/feedback' , require('./Routes/feedbackRoute'))
 app.use('/reactComponent' , require('./Routes/reactComponent'))
-app.use('/express' , require('./Routes/reactComponent'))
+app.use('/express' , require('./Routes/expressRouter'))
+app.use('/mongodb' , require('./Routes/mongodbRouter'))
+app.use('/mongoose' , require('./Routes/MongooseRouter'))
 
 app.get('/' , (req , res) =>{
     res.send({message : "Server Is Running"})
