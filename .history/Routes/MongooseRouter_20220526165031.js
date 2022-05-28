@@ -1,10 +1,22 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const codeSchema = require('../Schema/codeSchema')
 const verifyJWT = require('../verifyJWt')
-
-const Mongoose = new mongoose.model('Mongoose', codeSchema)
+const mongooSchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    code: {
+        type: String,
+        required: true
+    },
+    date:{
+        type: Date,
+        default: Date.now
+    }
+})
+const Mongoose = new mongoose.model('Mongoose', mongooSchema)
 
 router.get('/', (req, res) => {
     Mongoose.find({}, (err, data) => {

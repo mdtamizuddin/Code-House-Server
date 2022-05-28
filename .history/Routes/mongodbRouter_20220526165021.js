@@ -1,13 +1,26 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const codeSchema = require('../Schema/codeSchema')
 const verifyJWT = require('../verifyJWt')
+const mongodbSchema = mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    code: {
+        type: String,
+        required: true
+    },
+    date:{
+        type: Date,
+        default: Date.now
+    }
 
-const Mongoose = new mongoose.model('Mongoose', codeSchema)
+})
+const Mongodb = new mongoose.model('Mongodb', mongodbSchema)
 
 router.get('/', (req, res) => {
-    Mongoose.find({}, (err, data) => {
+    Mongodb.find({}, (err, data) => {
         if (err) {
             res.status(500).json({ error: "Server Side Error" })
         }
@@ -18,7 +31,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    Mongoose.findOne({ "_id": req.params.id }, (err, data) => {
+    Mongodb.findOne({ "_id": req.params.id }, (err, data) => {
         if (err) {
             res.status(500).json({ error: "Server Side Error" })
         }
@@ -28,7 +41,7 @@ router.get('/:id', (req, res) => {
     })
 })
 router.post('/',verifyJWT, (req, res) => {
-    const newData = Mongoose(req.body)
+    const newData = Mongodb(req.body)
     newData.save((err , data)=>{
         if (err) {
             res.status(500).send({message : "Server Side Problem"})
