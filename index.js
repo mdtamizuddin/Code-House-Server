@@ -28,6 +28,7 @@ app.use('/react' , require('./Routes/reactRouter'))
 app.use('/reactComp' , require('./Routes/react'))
 app.use('/next' , require('./Routes/nextRouter'))
 app.use('/redux' , require('./Routes/reduxRouter'))
+app.use('/trust' , require('./Routes/trustRouter'))
 
 app.get('/' , (req , res) =>{
     res.send({message : "Server Is Running"})
