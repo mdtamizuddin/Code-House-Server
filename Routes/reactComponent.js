@@ -8,11 +8,11 @@ const ReactComponent = new mongoose.model('ReactComponent', reactComponentSchema
 
 router.get('/', (req, res) => {
     ReactComponent.find({}, (err, data) => {
-        const comp = data.reverse()
         if (err) {
             res.status(500).json({ error: "Server Side Error" })
         }
         else {
+            const comp = data.reverse()
             res.status(200).json(comp)
         }
     })

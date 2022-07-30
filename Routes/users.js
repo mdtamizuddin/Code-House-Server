@@ -13,7 +13,8 @@ router.get('/',verifyJWT, (req, res) => {
             res.status(500).json({ error: "Server Side Error" })
         }
         else {
-            res.status(200).json(data)
+            const comp = data.reverse()
+            res.status(200).json(comp)
         }
     })
 })
