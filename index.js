@@ -26,6 +26,7 @@ app.use('/mongodb' , require('./Routes/mongodbRouter'))
 app.use('/mongoose' , require('./Routes/MongooseRouter'))
 app.use('/react' , require('./Routes/reactRouter'))
 app.use('/next' , require('./Routes/nextRouter'))
+app.use('/redux' , require('./Routes/reduxRouter'))
 
 app.get('/' , (req , res) =>{
     res.send({message : "Server Is Running"})
