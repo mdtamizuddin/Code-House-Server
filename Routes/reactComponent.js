@@ -12,7 +12,7 @@ router.get('/',(req , res) => {
             res.status(500).json({ error: "Server Side Error" })
         }
         else {
-            res.status(200).json(data)
+            res.status(200).json({data : data.reverse()})
         }
     })
 })
