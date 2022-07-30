@@ -28,12 +28,24 @@ router.get('/:id', (req, res) => {
 })
 router.post('/', (req, res) => {
     const newData = Express(req.body)
-    newData.save((err , data)=>{
+    newData.save((err, data) => {
         if (err) {
-            res.status(500).send({message : "Server Side Problem"})
+            res.status(500).send({ message: "Server Side Problem" })
         }
-        else{
+        else {
             res.status(200).send(data)
+        }
+    })
+})
+
+router.delete('/:id', verifyJWT, async (req, res) => {
+    const id = req.params.id
+    Express.deleteOne({ '_id': id }, (err) => {
+        if (err) {
+            res.status(500).json({ error: "Server Side Error" })
+        }
+        else {
+            res.status(200).json({ message: 'Component Deleted Success' })
         }
     })
 })

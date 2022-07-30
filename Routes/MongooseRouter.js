@@ -38,4 +38,16 @@ router.post('/',verifyJWT, (req, res) => {
         }
     })
 })
+
+router.delete('/:id',verifyJWT,  async (req, res) => {
+    const id = req.params.id
+    Mongoose.deleteOne({ '_id': id }, (err) => {
+        if (err) {
+            res.status(500).json({ error: "Server Side Error" })
+        }
+        else {
+            res.status(200).json({ message: 'Component Deleted Success' })
+        }
+    })
+})
 module.exports = router 
