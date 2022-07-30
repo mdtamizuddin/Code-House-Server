@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 const codeSchema = require('../Schema/codeSchema')
-
+const verifyJWT = require('../verifyJWt')
 const React = new mongoose.model('React', codeSchema)
 
 router.get('/', (req, res) => {

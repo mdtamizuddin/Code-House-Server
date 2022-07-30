@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-
+const verifyJWT = require('../verifyJWt')
 const trustSchema = mongoose.Schema({
     data: {
         type: Object,
