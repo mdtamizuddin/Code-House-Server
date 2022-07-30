@@ -5,8 +5,6 @@ const mongoose = require('mongoose')
 const verifyJWT = require('../verifyJWt')
 
 
-const mongoose = require('mongoose')
-
 const reactComponentSchema = mongoose.Schema({
     email: {
         type: String,
